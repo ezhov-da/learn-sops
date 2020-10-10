@@ -4,15 +4,29 @@ Sops repo [https://github.com/mozilla/sops](https://github.com/mozilla/sops)
 
 Download Sops for Windows [https://github.com/mozilla/sops/releases/download/v3.6.1/sops-v3.6.1.exe](https://github.com/mozilla/sops/releases/download/v3.6.1/sops-v3.6.1.exe)
 
-Download GnuPG [https://www.gnupg.org/ftp/gcrypt/binary/gnupg-w32-2.2.23_20200903.exe](https://www.gnupg.org/ftp/gcrypt/binary/gnupg-w32-2.2.23_20200903.exe)
+Download and install GnuPG for Windows [https://www.gnupg.org/ftp/gcrypt/binary/gnupg-w32-2.2.23_20200903.exe](https://www.gnupg.org/ftp/gcrypt/binary/gnupg-w32-2.2.23_20200903.exe)
 
 
-Generate key: ```gpg --gen-key```
+Generate key
+ ```
+gpg --gen-key
 
-Get key from 
+name: username
+email: username@mail.com
+passphrase: username
 ```
-pub   rsa2048 2020-10-10 [SC] [expires: 2022-10-10]
-      99F9A661634F35C44301C44078B91D08651E4754
-uid                      username <username@mail.com>
-sub   rsa2048 2020-10-10 [E] [expires: 2022-10-10]
+
+Get key from
+```
+key BA6887C827163B1E marked as ultimately trusted
+```
+
+Encrypt
+```
+.\sops-v3.6.1.exe --encrypt --in-place --pgp BA6887C827163B1E secret.yml
+```
+
+Decrypt 
+```
+.\sops-v3.6.1.exe --decrypt secret.yml > secret-decrypt.yml
 ```
